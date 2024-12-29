@@ -4,11 +4,10 @@
         {
             "label": "Build Project",
             "type": "shell",
-            "command": "g++",
+            "command": "bash",
             "args": [
-                "-o", "build/myfirstsdl2app",
-                "main.cpp",
-                "`sdl2-config --cflags --libs`"
+                "-c",
+                "g++ -o build/subwaylinesgenerator main.cpp $(sdl2-config --cflags --libs)"
             ],
             "group": {
                 "kind": "build",
