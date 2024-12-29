@@ -7,7 +7,7 @@
             "command": "bash",
             "args": [
                 "-c",
-                "g++ -o build/subwaylinesgenerator main.cpp $(sdl2-config --cflags --libs)"
+                "g++ -o build/subwaylinesgenerator src/main.cpp $(sdl2-config --cflags --libs)"
             ],
             "group": {
                 "kind": "build",
