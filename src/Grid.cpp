@@ -64,6 +64,9 @@ void Grid::drawPaths(SDL_Renderer *renderer)
                 for (int y = curr.y; y < next.y; y++)
                 {
                     grid[y][curr.x] += 1;
+
+                    const SDL_Rect rect = {_origin.x + curr.x * _step, _origin.y + y * _step, _step, _step};
+                    SDL_RenderFillRect(renderer, &rect);
                 }
             }
             else if (dy == 0)
@@ -71,6 +74,9 @@ void Grid::drawPaths(SDL_Renderer *renderer)
                 for (int x = curr.x; x < next.x; x++)
                 {
                     grid[curr.y][x] += 1;
+
+                    const SDL_Rect rect = {_origin.x + x * _step, _origin.y + curr.y * _step, _step, _step};
+                    SDL_RenderFillRect(renderer, &rect);
                 }
             }
             else if (abs(dx) == abs(dy))
@@ -84,6 +90,9 @@ void Grid::drawPaths(SDL_Renderer *renderer)
                     const int y = curr.y + (stepY * j);
 
                     grid[y][x] += 1;
+
+                    const SDL_Rect rect = {_origin.x + x * _step, _origin.y + y * _step, _step, _step};
+                    SDL_RenderFillRect(renderer, &rect);
                 }
             }
             else
@@ -95,8 +104,14 @@ void Grid::drawPaths(SDL_Renderer *renderer)
         // Count the last point in the path, which was previously skipped.
         if (pathSize > 1)
         {
-            const Vector2<int> lastPoint = p.points[pathSize - 1];
-            grid[lastPoint.y][lastPoint.x] += 1;
+            const Vector2<int> last = p.points[pathSize - 1];
+            const int x = last.x;
+            const int y = last.y;
+            
+            grid[y][x] += 1;
+
+            const SDL_Rect rect = {_origin.x + x * _step, _origin.y + y * _step, _step, _step};
+            SDL_RenderFillRect(renderer, &rect);
         }
     }
     
